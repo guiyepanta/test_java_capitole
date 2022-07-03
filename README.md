@@ -50,7 +50,8 @@ Desarrollar unos test al endpoint rest que  validen las siguientes peticiones al
 
 Microservicio desarrollado con Springboot + Java 11 + Maven + (JPA y JDBC). Para testear la aplicación se utiliza JUnit y Mockito
 
-Dicho microservicio expone 2 Endpoints para la consulta de precios según fecha de aplicación, producto y brand.
+Dicho microservicio expone 2 Endpoints para la consulta de precios según fecha de aplicación, producto y brand. Ambas consultas tienen la misma funcionalidad, pero con implementaciones diferente para acceder a los datos en la DB.
+
 - Una consulta que utiliza JDBC de Springboot
 - Una consulta que utiliza JPA
 
