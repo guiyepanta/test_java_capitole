@@ -54,7 +54,7 @@ Dicho microservicio expone 2 endPonint para la consulta de precios según fecha 
 - Una consulta que utiliza JDBC de Springboot
 - Una consulta que utiliza JPA
 
-Se hace de esta manera con el fin de mostrar 2 maneras de realizar una consulta a los registros de la base de datos.
+Se desarrollan las consultas con estas 2 maneras con el fin de mostrar distintas opciones para consultar los registros en la base de datos.
 
 | endpoint                                                              | tecnología ddbb |
 |-----------------------------------------------------------------------|-----------------|
