@@ -15,18 +15,18 @@ import com.capitole.testjava.exceptions.PriceNotFoundException;
 import com.capitole.testjava.responses.PriceResponse;
 import com.capitole.testjava.services.PriceService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("api/v1/prices")
+@Api(value = "Test Java - PRICE", description = "Se exponen recursos para obtener información de precios según fecha, producto y tienda.")
 public class PricesController {
 
     @Autowired
     private PriceService service;
 
-    @GetMapping("hello")
-    public String hello() {
-	return "Hola mundo!";
-    }
-
+    @ApiOperation(value = "Retorna valores de precios utilizando JDBC para obtener los datos de la DB.")
     @GetMapping("consultaQuery/{fechaAplicacion}/{productoId}/{brandId}")
     public ResponseEntity<PriceResponse> consultaPrecioQuery(
 	    @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd HH:mm:ss") Date fechaAplicacion,
@@ -42,6 +42,7 @@ public class PricesController {
 	}
     }
 
+    @ApiOperation(value = "Retorna valores de precios utilizando JPA para obtener los datos de la DB.")
     @GetMapping("consultaJPA/{fechaAplicacion}/{productoId}/{brandId}")
     public ResponseEntity<PriceResponse> consultaPrecioJPA(
 	    @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd HH:mm:ss") Date fechaAplicacion,
