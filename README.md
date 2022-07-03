@@ -61,3 +61,5 @@ Se desarrollan las consultas con estas 2 maneras con el fin de mostrar distintas
 | /api/v1/prices/consultaQuery/{fechaAplicacion}/{productoId}/{brandId} | JDBC            |
 | /api/v1/prices/consultaJPA/{fechaAplicacion}/{productoId}/{brandId}   | JPA             |
 
+El proyecto implementa Swagger-UI accesible en la siguiente url: http://localhost:8080/swagger-ui.html
+
