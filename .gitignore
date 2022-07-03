@@ -33,3 +33,4 @@ HELP.md
 .vs/
 /.apt_generated_tests/
 .metadata
+.src/main/java/META-INF/
