@@ -54,6 +54,7 @@ class TestJavaApplicationTests {
 
 	Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
 	Assertions.assertEquals(1, priceResponse.getPrice().getPriceList());
+	Assertions.assertEquals(Float.valueOf("35.50"), priceResponse.getPrice().getPrice());
 
     }
 
@@ -75,7 +76,7 @@ class TestJavaApplicationTests {
 
 	Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
 	Assertions.assertEquals(2, priceResponse.getPrice().getPriceList());
-
+	Assertions.assertEquals(Float.valueOf("25.45"), priceResponse.getPrice().getPrice());
     }
 
     @Test
@@ -96,7 +97,7 @@ class TestJavaApplicationTests {
 
 	Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
 	Assertions.assertEquals(1, priceResponse.getPrice().getPriceList());
-
+	Assertions.assertEquals(Float.valueOf("35.50"), priceResponse.getPrice().getPrice());
     }
 
     @Test
@@ -117,7 +118,7 @@ class TestJavaApplicationTests {
 
 	Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
 	Assertions.assertEquals(3, priceResponse.getPrice().getPriceList());
-
+	Assertions.assertEquals(Float.valueOf("30.50"), priceResponse.getPrice().getPrice());
     }
 
     @Test
@@ -138,7 +139,7 @@ class TestJavaApplicationTests {
 
 	Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
 	Assertions.assertEquals(4, priceResponse.getPrice().getPriceList());
-
+	Assertions.assertEquals(Float.valueOf("38.95"), priceResponse.getPrice().getPrice());
     }
 
     @Test
