@@ -2,10 +2,13 @@ package com.capitole.testjava.controllers;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
+@Validated
 @RequestMapping("api/v1/prices")
 @Api(value = "Test Java - PRICE", description = "Se exponen recursos para obtener información de precios según fecha, producto y tienda.")
 public class PricesController {
@@ -30,7 +34,7 @@ public class PricesController {
     @GetMapping("consultaQuery/{fechaAplicacion}/{productoId}/{brandId}")
     public ResponseEntity<PriceResponse> consultaPrecioQuery(
 	    @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd HH:mm:ss") Date fechaAplicacion,
-	    @PathVariable Integer productoId, @PathVariable Integer brandId) {
+	    @PathVariable @Min(0) Integer productoId, @PathVariable @Min(0) Integer brandId) {
 
 	try {
 
@@ -39,6 +43,8 @@ public class PricesController {
 
 	} catch (PriceNotFoundException nfe) {
 	    return ResponseEntity.notFound().build();
+	} catch (Exception e) {
+	    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	}
     }
 
@@ -46,7 +52,7 @@ public class PricesController {
     @GetMapping("consultaJPA/{fechaAplicacion}/{productoId}/{brandId}")
     public ResponseEntity<PriceResponse> consultaPrecioJPA(
 	    @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd HH:mm:ss") Date fechaAplicacion,
-	    @PathVariable Integer productoId, @PathVariable Integer brandId) {
+	    @PathVariable @Min(0) Integer productoId, @PathVariable @Min(0) Integer brandId) {
 
 	try {
 
@@ -55,6 +61,8 @@ public class PricesController {
 
 	} catch (PriceNotFoundException nfe) {
 	    return ResponseEntity.notFound().build();
+	} catch (Exception e) {
+	    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	}
     }
 }
