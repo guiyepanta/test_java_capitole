@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -19,23 +20,11 @@ public class PriceQueryRepository {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private static final String SENTENCIA_SQL = "SELECT "
-    						+ "TOP 1 "
-    						+ "id, "
-    						+ "brand_id as brandId, "
-    						+ "product_id as productId, "
-    						+ "start_date as startDate, "
-    						+ "end_date as endDate, "
-    						+ "price, "
-    						+ "price_list as priceList, "
-    						+ "priority, "
-    						+ "curr "
-    						+ "FROM prices "
-    						+ "WHERE start_date <= :fechaAplicacion "
-    						+ "AND end_date >= :fechaAplicacion "
-    						+ "AND product_id = :productId "
-    						+ "AND brand_id = :brandId "
-    						+ "ORDER BY priority DESC";
+    private static final String SENTENCIA_SQL = "SELECT " + "TOP 1 " + "id, " + "brand_id as brandId, "
+	    + "product_id as productId, " + "start_date as startDate, " + "end_date as endDate, " + "price, "
+	    + "price_list as priceList, " + "priority, " + "curr " + "FROM prices "
+	    + "WHERE start_date <= :fechaAplicacion " + "AND end_date >= :fechaAplicacion "
+	    + "AND product_id = :productId " + "AND brand_id = :brandId " + "ORDER BY priority DESC";
 
     public PriceDTO consultarBy(Date fechaAplicacion, Integer productId, Integer brandId) {
 
@@ -47,10 +36,10 @@ public class PriceQueryRepository {
 	List<PriceDTO> resultado = namedParameterJdbcTemplate.query(SENTENCIA_SQL, sqlParameterSource,
 		new PriceMapper());
 
-	if (resultado != null && resultado.size() > 0) {
-	    return resultado.get(0);
+	if (Objects.isNull(resultado) || resultado.size() == 0) {
+	    throw new PriceNotFoundException("Precio no encontrado.");
 	}
 
-	throw new PriceNotFoundException("Precio no encontrado.");
+	return resultado.get(0);
     }
 }

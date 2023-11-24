@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capitole.testjava.exceptions.PriceNotFoundException;
 import com.capitole.testjava.responses.PriceResponse;
 import com.capitole.testjava.services.PriceService;
 
@@ -36,16 +35,9 @@ public class PricesController {
 	    @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd HH:mm:ss") Date fechaAplicacion,
 	    @PathVariable @Min(0) Integer productoId, @PathVariable @Min(0) Integer brandId) {
 
-	try {
+	PriceResponse response = service.consultarPriceWithQueryBy(fechaAplicacion, productoId, brandId);
+	return new ResponseEntity<>(response, HttpStatus.OK);
 
-	    PriceResponse response = service.consultarPriceWithQueryBy(fechaAplicacion, productoId, brandId);
-	    return new ResponseEntity<>(response, HttpStatus.OK);
-
-	} catch (PriceNotFoundException nfe) {
-	    return ResponseEntity.notFound().build();
-	} catch (Exception e) {
-	    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-	}
     }
 
     @ApiOperation(value = "Retorna valores de precios utilizando JPA para obtener los datos de la DB.")
@@ -54,15 +46,8 @@ public class PricesController {
 	    @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd HH:mm:ss") Date fechaAplicacion,
 	    @PathVariable @Min(0) Integer productoId, @PathVariable @Min(0) Integer brandId) {
 
-	try {
+	PriceResponse response = service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);
+	return new ResponseEntity<>(response, HttpStatus.OK);
 
-	    PriceResponse response = service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);
-	    return new ResponseEntity<>(response, HttpStatus.OK);
-
-	} catch (PriceNotFoundException nfe) {
-	    return ResponseEntity.notFound().build();
-	} catch (Exception e) {
-	    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-	}
     }
 }

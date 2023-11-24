@@ -1,6 +1,7 @@
 package com.capitole.testjava.services;
 
 import java.util.Date;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class PriceService {
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
 			fechaAplicacion, fechaAplicacion, productId, brandId);
 
-	if (price == null) {
+	if (Objects.isNull(price)) {
 	    throw new PriceNotFoundException("Precio no encontrado.");
 	}
 
