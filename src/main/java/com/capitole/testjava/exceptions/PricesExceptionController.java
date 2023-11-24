@@ -12,7 +12,7 @@ public class PricesExceptionController {
 
     @ExceptionHandler(value = PriceNotFoundException.class)
 
-    public ResponseEntity<ErrorDTO> exception(PriceNotFoundException exception) {
+    public ResponseEntity<ErrorDTO> PriceNotFoundExceptionHandler(PriceNotFoundException exception) {
 	// Se debería definir una tabla de Codigos de errores para el sistema
 	ErrorDTO error = ErrorDTO.builder().code("P-404").message(exception.getMessage()).build();
 	return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
