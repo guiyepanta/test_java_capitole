@@ -3,6 +3,7 @@ package com.capitole.testjava.services;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -44,6 +45,8 @@ public class PriceServiceTest {
 	priceMock.setPrice(Float.valueOf("35.50"));
 	priceMock.setCurr("EUR");
 
+	Optional<Price> optionalPriceMock = Optional.of(priceMock);
+
 	// WHEN
 	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-14 10:00:00");
 	Integer productoId = 35455;
@@ -51,7 +54,7 @@ public class PriceServiceTest {
 
 	when(jpaRepository
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
-			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(priceMock);
+			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(optionalPriceMock);
 
 	PriceResponse response = service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);
 
@@ -75,6 +78,8 @@ public class PriceServiceTest {
 	priceMock.setPrice(Float.valueOf("25.45"));
 	priceMock.setCurr("EUR");
 
+	Optional<Price> optionalPriceMock = Optional.of(priceMock);
+
 	// WHEN
 	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-14 16:00:00");
 	Integer productoId = 35455;
@@ -82,7 +87,7 @@ public class PriceServiceTest {
 
 	when(jpaRepository
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
-			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(priceMock);
+			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(optionalPriceMock);
 
 	PriceResponse response = service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);
 
@@ -105,13 +110,15 @@ public class PriceServiceTest {
 	priceMock.setPrice(Float.valueOf("35.50"));
 	priceMock.setCurr("EUR");
 
+	Optional<Price> optionalPriceMock = Optional.of(priceMock);
+
 	// WHEN
 	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-14 21:00:00");
 	Integer productoId = 35455;
 	Integer brandId = 1;
 	when(jpaRepository
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
-			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(priceMock);
+			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(optionalPriceMock);
 
 	PriceResponse response = service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);
 
@@ -135,13 +142,15 @@ public class PriceServiceTest {
 	priceMock.setPrice(Float.valueOf("30.50"));
 	priceMock.setCurr("EUR");
 
+	Optional<Price> optionalPriceMock = Optional.of(priceMock);
+
 	// WHEN
 	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-15 10:00:00");
 	Integer productoId = 35455;
 	Integer brandId = 1;
 	when(jpaRepository
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
-			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(priceMock);
+			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(optionalPriceMock);
 
 	PriceResponse response = service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);
 
@@ -164,13 +173,15 @@ public class PriceServiceTest {
 	priceMock.setPrice(Float.valueOf("38.95"));
 	priceMock.setCurr("EUR");
 
+	Optional<Price> optionalPriceMock = Optional.of(priceMock);
+
 	// WHEN
 	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-16 21:00:00");
 	Integer productoId = 35455;
 	Integer brandId = 1;
 	when(jpaRepository
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
-			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(priceMock);
+			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(optionalPriceMock);
 
 	PriceResponse response = service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);
 
@@ -183,7 +194,7 @@ public class PriceServiceTest {
     @DisplayName("Caso 06: Test consulta con JPA response 404 - Price inexistente")
     public void consultaJPAtestIsError404() throws Exception {
 	// GIVEN
-	Price priceMock = null;
+	Optional<Price> optionalPriceMock = Optional.empty();
 
 	// WHEN
 	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-14 21:00:00");
@@ -192,7 +203,7 @@ public class PriceServiceTest {
 
 	when(jpaRepository
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
-			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(priceMock);
+			fechaAplicacion, fechaAplicacion, productoId, brandId)).thenReturn(optionalPriceMock);
 
 	PriceNotFoundException exception = Assertions.assertThrows(PriceNotFoundException.class, () -> {
 	    service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);

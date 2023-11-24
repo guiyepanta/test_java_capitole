@@ -1,7 +1,7 @@
 package com.capitole.testjava.services;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,18 +35,18 @@ public class PriceService {
     }
 
     public PriceResponse consultarPriceWithJPABy(LocalDateTime fechaAplicacion, Integer productId, Integer brandId) {
-	Price price = repoJPA
+	Optional<Price> price = repoJPA
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
 			fechaAplicacion, fechaAplicacion, productId, brandId);
 
-	if (Objects.isNull(price)) {
+	if (price.isEmpty()) {
 	    throw new PriceNotFoundException("Precio no encontrado.");
 	}
 
 	PriceResponse response = new PriceResponse();
 	response.setCodigo(0);
 	response.setDescripcion("OK");
-	response.setPrice(PriceMapper.getPriceDTO(price));
+	response.setPrice(PriceMapper.getPriceDTO(price.get()));
 
 	return response;
     }
