@@ -2,7 +2,7 @@ package com.capitole.testjava.services;
 
 import static org.mockito.Mockito.when;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -45,7 +45,7 @@ public class PriceServiceTest {
 	priceMock.setCurr("EUR");
 
 	// WHEN
-	Date fechaAplicacion = DateUtil.getDateFromString("2020-06-14 10:00:00");
+	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-14 10:00:00");
 	Integer productoId = 35455;
 	Integer brandId = 1;
 
@@ -76,7 +76,7 @@ public class PriceServiceTest {
 	priceMock.setCurr("EUR");
 
 	// WHEN
-	Date fechaAplicacion = DateUtil.getDateFromString("2020-06-14 16:00:00");
+	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-14 16:00:00");
 	Integer productoId = 35455;
 	Integer brandId = 1;
 
@@ -106,7 +106,7 @@ public class PriceServiceTest {
 	priceMock.setCurr("EUR");
 
 	// WHEN
-	Date fechaAplicacion = DateUtil.getDateFromString("2020-06-14 21:00:00");
+	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-14 21:00:00");
 	Integer productoId = 35455;
 	Integer brandId = 1;
 	when(jpaRepository
@@ -136,7 +136,7 @@ public class PriceServiceTest {
 	priceMock.setCurr("EUR");
 
 	// WHEN
-	Date fechaAplicacion = DateUtil.getDateFromString("2020-06-15 10:00:00");
+	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-15 10:00:00");
 	Integer productoId = 35455;
 	Integer brandId = 1;
 	when(jpaRepository
@@ -165,7 +165,7 @@ public class PriceServiceTest {
 	priceMock.setCurr("EUR");
 
 	// WHEN
-	Date fechaAplicacion = DateUtil.getDateFromString("2020-06-16 21:00:00");
+	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-16 21:00:00");
 	Integer productoId = 35455;
 	Integer brandId = 1;
 	when(jpaRepository
@@ -186,7 +186,7 @@ public class PriceServiceTest {
 	Price priceMock = null;
 
 	// WHEN
-	Date fechaAplicacion = DateUtil.getDateFromString("2020-06-14 21:00:00");
+	LocalDateTime fechaAplicacion = DateUtil.getDateFromString("2020-06-14 21:00:00");
 	Integer productoId = 11111;
 	Integer brandId = 1;
 

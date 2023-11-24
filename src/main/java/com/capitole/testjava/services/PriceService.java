@@ -1,6 +1,6 @@
 package com.capitole.testjava.services;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class PriceService {
     @Autowired
     private PriceJPARepository repoJPA;
 
-    public PriceResponse consultarPriceWithQueryBy(Date fechaAplicacion, Integer productId, Integer brandId) {
+    public PriceResponse consultarPriceWithQueryBy(LocalDateTime fechaAplicacion, Integer productId, Integer brandId) {
 	PriceResponse response = new PriceResponse();
 
 	PriceDTO prices = repoQuery.consultarBy(fechaAplicacion, productId, brandId);
@@ -34,7 +34,7 @@ public class PriceService {
 	return response;
     }
 
-    public PriceResponse consultarPriceWithJPABy(Date fechaAplicacion, Integer productId, Integer brandId) {
+    public PriceResponse consultarPriceWithJPABy(LocalDateTime fechaAplicacion, Integer productId, Integer brandId) {
 	Price price = repoJPA
 		.findTopByEndDateGreaterThanEqualAndStartDateLessThanEqualAndProductIdAndBrandIdOrderByPriorityDesc(
 			fechaAplicacion, fechaAplicacion, productId, brandId);

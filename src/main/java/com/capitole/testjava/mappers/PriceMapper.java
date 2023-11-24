@@ -16,8 +16,8 @@ public class PriceMapper implements RowMapper<PriceDTO> {
 
 	resultado.setId(Integer.parseInt(rs.getObject("id").toString()));
 	resultado.setBrandId(Integer.parseInt(rs.getObject("brandId").toString()));
-	resultado.setStartDate(rs.getTimestamp(("startDate")));
-	resultado.setEndDate(rs.getTimestamp(("endDate")));
+	resultado.setStartDate(rs.getTimestamp(("startDate")).toLocalDateTime());
+	resultado.setEndDate(rs.getTimestamp(("endDate")).toLocalDateTime());
 	resultado.setPriceList(Integer.parseInt(rs.getObject("priceList").toString()));
 	resultado.setProductId(Integer.parseInt(rs.getObject("productId").toString()));
 	resultado.setPriority(Integer.parseInt(rs.getObject("priority").toString()));

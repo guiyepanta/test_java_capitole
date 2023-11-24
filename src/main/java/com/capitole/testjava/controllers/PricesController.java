@@ -1,6 +1,6 @@
 package com.capitole.testjava.controllers;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.Min;
 
@@ -32,7 +32,7 @@ public class PricesController {
     @ApiOperation(value = "Retorna valores de precios utilizando JDBC para obtener los datos de la DB.")
     @GetMapping("consultaQuery/{fechaAplicacion}/{productoId}/{brandId}")
     public ResponseEntity<PriceResponse> consultaPrecioQuery(
-	    @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd HH:mm:ss") Date fechaAplicacion,
+	    @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime fechaAplicacion,
 	    @PathVariable @Min(0) Integer productoId, @PathVariable @Min(0) Integer brandId) {
 
 	PriceResponse response = service.consultarPriceWithQueryBy(fechaAplicacion, productoId, brandId);
@@ -43,7 +43,7 @@ public class PricesController {
     @ApiOperation(value = "Retorna valores de precios utilizando JPA para obtener los datos de la DB.")
     @GetMapping("consultaJPA/{fechaAplicacion}/{productoId}/{brandId}")
     public ResponseEntity<PriceResponse> consultaPrecioJPA(
-	    @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd HH:mm:ss") Date fechaAplicacion,
+	    @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime fechaAplicacion,
 	    @PathVariable @Min(0) Integer productoId, @PathVariable @Min(0) Integer brandId) {
 
 	PriceResponse response = service.consultarPriceWithJPABy(fechaAplicacion, productoId, brandId);

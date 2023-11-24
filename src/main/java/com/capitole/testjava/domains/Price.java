@@ -1,6 +1,6 @@
 package com.capitole.testjava.domains;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,10 +21,10 @@ public class Price {
     private Integer brandId;
 
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDateTime startDate;
 
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDateTime endDate;
 
     @Column(name = "price_list")
     private Integer priceList;
@@ -57,19 +57,19 @@ public class Price {
 	this.brandId = brandId;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
 	return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
 	this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
 	return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
 	this.endDate = endDate;
     }
 

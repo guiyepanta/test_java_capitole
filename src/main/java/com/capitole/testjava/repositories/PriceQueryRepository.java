@@ -1,6 +1,6 @@
 package com.capitole.testjava.repositories;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class PriceQueryRepository {
 	    + "WHERE start_date <= :fechaAplicacion " + "AND end_date >= :fechaAplicacion "
 	    + "AND product_id = :productId " + "AND brand_id = :brandId " + "ORDER BY priority DESC";
 
-    public PriceDTO consultarBy(Date fechaAplicacion, Integer productId, Integer brandId) {
+    public PriceDTO consultarBy(LocalDateTime fechaAplicacion, Integer productId, Integer brandId) {
 
 	Map<String, Object> sqlParameterSource = new HashMap<String, Object>();
 	sqlParameterSource.put("fechaAplicacion", fechaAplicacion);
